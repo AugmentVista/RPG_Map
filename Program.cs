@@ -16,7 +16,7 @@
             Console.WriteLine("");
             Console.WriteLine("");
             DisplayMap(2);
-            Console.ReadKey(true);
+            Console.ReadKey(true); // test
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
