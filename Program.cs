@@ -22,6 +22,14 @@ namespace RPG_Map
             DisplayMap(4);
             DrawBorder(4);
             Console.ReadKey(true);
+            Console.Clear();
+            DisplayMap(5);
+            DrawBorder(5);
+            Console.ReadKey(true);
+            Console.Clear();
+            DisplayMap(6);
+            DrawBorder(6);
+            Console.ReadKey(true);
         }
         static char[,] map = new char[,] // dimensions defined by following data:
         {
