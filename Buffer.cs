@@ -44,9 +44,6 @@ namespace RPG_Map
                         {
                             switch (MapElements)
                             {
-                                case '`':
-                                    Console.ForegroundColor = ConsoleColor.Magenta;
-                                    break;
                                 case '^':
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     Console.BackgroundColor = ConsoleColor.Black;
@@ -76,7 +73,7 @@ namespace RPG_Map
                                     Console.BackgroundColor = ConsoleColor.Yellow;
                                     break;
                             }
-                            Console.SetCursorPosition(X * scale + columnScale, Y * scale + rowScale);
+                            Console.SetCursorPosition((X + 1) * scale + columnScale, (Y + 1) * scale + rowScale);
                             Console.Write(MapElements);
                         }
                     }

@@ -121,11 +121,11 @@ namespace RPG_Map
 
         static bool IsValidMove(int newRow, int newCol)
         {
-            if (newRow > 0 && newRow < map.GetLength(1) && newCol > 0 && newCol < map.GetLength(0))
+            if (newRow >= 0 && newRow < map.GetLength(1) && newCol >= 0 && newCol < map.GetLength(0))
             {
                 switch (map[newCol, newRow])
                 {
-                    case '`':
+                    case ' ':
                     case '^':
                     case '~':
                     case '░':
@@ -146,8 +146,8 @@ namespace RPG_Map
             int mapHeight = map.GetLength(0);
             int HorizontalWall = 1;
             int VerticalWall = 1;
-            int totalWidth = mapWidth * scale;
-            int totalHeight = mapHeight * scale;
+            int totalWidth = (mapWidth + 1 )* scale;
+            int totalHeight = (mapHeight + 1) * scale;
 
             foreach (string ASCll in border)
             {
