@@ -11,9 +11,10 @@ namespace RPG_Map
         public static int playerRow = 1; // Initial player position
         public static int playerCol = 1;
         static char playerCharacter = '☻';
+        public static char Fruit = '☙';
         public static int health;
         public static bool dead;
-        const int maxHealth = 5;
+        public const int maxHealth = 5;
 
         public static void Initialize()
         {
@@ -72,11 +73,21 @@ namespace RPG_Map
 
             if (MapData.IsValidMove(newRow, newCol))
             {
-                // Update the player's position
                 playerRow = newRow;
                 playerCol = newCol;
             }
         }
+
+        public static void GainHealth()
+        {
+            health++;
+
+            if (health >= maxHealth)
+            {
+                health = maxHealth;
+            }
+        }
+
 
         public static void TakeDamage()
         {
@@ -86,7 +97,6 @@ namespace RPG_Map
                 Die();
             }
         }
-
         static void Die()
         {
             dead = true;

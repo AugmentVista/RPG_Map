@@ -33,7 +33,7 @@ namespace RPG_Map
                 Player.DrawPlayer();
                 Buffer.DisplayBuffer(1);
                 DrawBorder(1);
-            } while (keyInfo.Key != ConsoleKey.Escape && !Player.dead);
+            } while (keyInfo.Key != ConsoleKey.Escape && !Player.dead); // end game when all enemies are ded'd 
         }
 
         public static void TxtFileToMapArray()
@@ -64,7 +64,6 @@ namespace RPG_Map
                 switch (map[newCol, newRow])
                 {
                     case ' ':
-                    case '☙':
                         return true;
                     case '╭':
                     case '─':
@@ -85,6 +84,11 @@ namespace RPG_Map
                 if (map[newCol, newRow] == EnemyManager.enemyCharacter)
                 {
                     map[newCol, newRow] = ' ';
+                }
+                if (map[newCol, newRow] == Player.Fruit && Player.health < Player.maxHealth)
+                {
+                    map[newCol, newRow] = ' ';
+                    Player.GainHealth();
                 }
             }
             return false;
