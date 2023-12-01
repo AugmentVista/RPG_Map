@@ -13,10 +13,10 @@ namespace RPG_Map
     // 1: Stop the character from leaving a trail when they move around the map. ♂
     // 2: Fix double buffering so it doesn't painfully flicker on every movement. ♂
     // 3: Prevent the character from traveling over certain characters. ♂
-    // 4: Create an Enemy NPC that moves around with basic AI
-    // 5: Use the same logic to prevent the NPC's from moving through walls and terrain
-    // 6: Import and modify health system so that the NPC's damage you and vise versa
-    // 7: Define what happens when an enemy or the player dies. 
+    // 4: Create an Enemy NPC that moves around with basic AI ♂
+    // 5: Use the same logic to prevent the NPC's from moving through walls and terrain ♂
+    // 6: Import and modify health system so that the NPC's damage you and vise versa ♂
+    // 7: Define what happens when an enemy or the player dies. ♂
     // 8: Create a camera that follows the player so that they may navigate a map larger than the available screen size
     // 9: Adjust the code that creates the map to function without the need of cursor position as this likely screws with the camera.
 
@@ -44,33 +44,57 @@ namespace RPG_Map
                         {
                             switch (MapElements)
                             {
-                                case '^':
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.BackgroundColor = ConsoleColor.Black;
+
+                                case '╭':
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                     break;
-                                case '*':
-                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                    Console.BackgroundColor = ConsoleColor.Black;
+                                case '─':
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                     break;
-                                case '~':
-                                    Console.ForegroundColor = ConsoleColor.Blue;
-                                    Console.BackgroundColor = ConsoleColor.Black;
+                                case '╮':
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                     break;
-                                case '░':
-                                    Console.ForegroundColor = ConsoleColor.Blue;
-                                    Console.BackgroundColor = ConsoleColor.Black;
+                                case '╯':
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                     break;
-                                case '█':
-                                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-                                    Console.BackgroundColor = ConsoleColor.Black;
+                                case '╰':
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                    break;
+                                case '│':
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                    break;
+                                case '┘':
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                    break;
+                                case '┌':
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                    break;
+                                case '┐':
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                    break;
+                                case '└':
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                    break;
+                                case '├':
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                    break;
+                                case '┤':
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                    break;
+                                case '┬':
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                                    break;
+                                case '┴':
+                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                     break;
                                 case '☻':
                                     Console.ForegroundColor = ConsoleColor.Yellow;
-                                    Console.BackgroundColor = ConsoleColor.Black;
                                     break;
-                                case '☺':
-                                    Console.ForegroundColor = ConsoleColor.Black;
-                                    Console.BackgroundColor = ConsoleColor.Yellow;
+                                case '☙':
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    break;
+                                case '♣':
+                                    Console.ForegroundColor = ConsoleColor.White;
                                     break;
                             }
                             Console.SetCursorPosition((X + 1) * scale + columnScale, (Y + 1) * scale + rowScale);
@@ -80,14 +104,13 @@ namespace RPG_Map
                 }
             }
             Console.ResetColor();
-            Console.BackgroundColor = ConsoleColor.Black;    
-            Console.WriteLine(" ");
-            Console.WriteLine("     Map legend:  ");
-            Console.WriteLine("     ^ = mountain ");
-            Console.WriteLine("     * = Tree     ");
-            Console.WriteLine("     ` = grass    ");
-            Console.WriteLine("     ~ = water    ");
-            Console.WriteLine("⬠");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("           ████████     Map legend:     ████████ ");
+            Console.WriteLine("           ████████   ☙ = Health Fruit  ████████      ");
+            Console.WriteLine("           ████████   ♣ = Very Bad Guy  ████████");
+            Console.WriteLine("                Health: " + Player.health);
 
             Array.Copy(firstBuffer, secondBuffer, MapData.map.Length);
         }

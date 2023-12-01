@@ -8,12 +8,7 @@ namespace RPG_Map
 {
     public class MapData
     {
-        static public char character;
-        static int playerRow = 1; // Initial player position
-        static int playerCol = 1;
         public static int scale;
-        static char playerCharacter = '☻';
-        static char enemyCharacter = '☺';
         public static char[,] map;
 
         static string[] border = new string[]
@@ -26,19 +21,19 @@ namespace RPG_Map
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             TxtFileToMapArray();
-
-
+            EnemyManager.EnemyPopulate();
+            Player.Initialize();
             ConsoleKeyInfo keyInfo;
             do
             {
                 keyInfo = Console.ReadKey(true);
                 Console.SetCursorPosition(0, 0);
-                HandleKeyPress(keyInfo.Key);
+                Player.HandleKeyPress(keyInfo.Key);
                 DrawMap();
-                DrawPlayer();
+                Player.DrawPlayer();
                 Buffer.DisplayBuffer(1);
                 DrawBorder(1);
-            } while (keyInfo.Key != ConsoleKey.Escape);
+            } while (keyInfo.Key != ConsoleKey.Escape && !Player.dead);
         }
 
         public static void TxtFileToMapArray()
@@ -61,81 +56,36 @@ namespace RPG_Map
         {
             Array.Copy(map, Buffer.secondBuffer, map.Length);
         }
-        public static void DrawPlayer()
-        {
-            Buffer.secondBuffer[playerCol, playerRow] = playerCharacter;
-        }
 
-        static void HandleKeyPress(ConsoleKey key)
-        {
-            switch (key)
-            {
-                case ConsoleKey.UpArrow:
-                    MovePlayer(0, -1);
-                    break;
-
-                case ConsoleKey.DownArrow:
-                    MovePlayer(0, 1);
-                    break;
-
-                case ConsoleKey.LeftArrow:
-                    MovePlayer(-1, 0);
-                    break;
-
-                case ConsoleKey.RightArrow:
-                    MovePlayer(1, 0);
-                    break;
-
-                case ConsoleKey.W:
-                    MovePlayer(0, -1);
-                    break;
-
-                case ConsoleKey.S:
-                    MovePlayer(0, 1);
-                    break;
-
-                case ConsoleKey.A:
-                    MovePlayer(-1, 0);
-                    break;
-
-                case ConsoleKey.D:
-                    MovePlayer(1, 0);
-                    break;
-            }
-        }
-
-        static void MovePlayer(int rowChange, int columnChange)
-        {
-            Console.CursorVisible = false;
-            int newRow = playerRow + rowChange;
-            int newCol = playerCol + columnChange;
-
-            if (IsValidMove(newRow, newCol))
-            {
-                // Update the player's position
-                playerRow = newRow;
-                playerCol = newCol;
-            }
-        }
-
-
-        static bool IsValidMove(int newRow, int newCol)
+        public static bool IsValidMove(int newRow, int newCol)
         {
             if (newRow >= 0 && newRow < map.GetLength(1) && newCol >= 0 && newCol < map.GetLength(0))
             {
                 switch (map[newCol, newRow])
                 {
                     case ' ':
-                    case '^':
-                    case '~':
-                    case '░':
-                    case '†':
+                    case '☙':
                         return true;
-                    case '*':
-                    case '█':
+                    case '╭':
+                    case '─':
+                    case '╮':
+                    case '╯':
+                    case '╰':
+                    case '│':
+                    case '┘':
+                    case '┌':
+                    case '┐':
+                    case '└':
+                    case '├':
+                    case '┤':
+                    case '┬':
+                    case '┴':
                         return false;
                 }
-
+                if (map[newCol, newRow] == EnemyManager.enemyCharacter)
+                {
+                    map[newCol, newRow] = ' ';
+                }
             }
             return false;
         }
