@@ -10,6 +10,7 @@ namespace RPG_Map
     {
         public static int scale;
         public static char[,] map;
+        public static int score;
 
         static string[] border = new string[]
         {
@@ -19,6 +20,7 @@ namespace RPG_Map
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
+            score = 0;
 
             TxtFileToMapArray();
             EnemyManager.EnemyPopulate();
@@ -163,6 +165,34 @@ namespace RPG_Map
             Console.SetCursorPosition(totalWidth, totalHeight);
             Console.Write(border[2]);
 
+        }
+
+
+
+        public static int GetTotalFruit()
+        {
+            int totalFruit = 0;
+            int MapWidth = map.GetLength(1);
+            int MapHeight = map.GetLength(0);
+
+            for (int y = 0; y < MapHeight; y++)
+            {
+                for (int x = 0; x < MapWidth; x++)
+                {
+                    if (map[y, x] == Player.Fruit)
+                    {
+                        totalFruit++;
+                    }
+                }
+            }
+            return totalFruit;
+        }
+
+        public static int UpdateScore()
+        {
+            int score = EnemyManager.numberOfEnemies - EnemyManager.GetRemainingEnemies() + GetTotalFruit();
+            Player.Score = score;
+            return score;
         }
     }
 }

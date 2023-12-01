@@ -15,11 +15,13 @@ namespace RPG_Map
         public static int health;
         public static bool dead;
         public const int maxHealth = 5;
+        public static int Score;
 
         public static void Initialize()
         {
             health = maxHealth;
             dead = false;
+            Score = 0;
         }
 
         public static void DrawPlayer()
@@ -63,6 +65,7 @@ namespace RPG_Map
                     break;
             }
             EnemyManager.MoveEnemies();
+            MapData.UpdateScore();
         }
 
         static void MovePlayer(int rowChange, int columnChange)

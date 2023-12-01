@@ -9,11 +9,11 @@ namespace RPG_Map
 {
     internal class EnemyManager : MapData
     {
-
+        public int remainingEnemies = GetRemainingEnemies();
         static int MapWidth = map.GetLength(1);
         static int MapHeight = map.GetLength(0);
         public static char enemyCharacter = '♣';
-        static int numberOfEnemies = 50; 
+        public static int numberOfEnemies = 50; 
         static Random random = new Random();
 
         static public void EnemyPopulate()
@@ -69,5 +69,25 @@ namespace RPG_Map
                 }
             }
         }
+
+
+
+        public static int GetRemainingEnemies()
+        {
+            int count = 0;
+
+            for (int y = 0; y < MapHeight; y++)
+            {
+                for (int x = 0; x < MapWidth; x++)
+                {
+                    if (map[y, x] == enemyCharacter)
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
+
     }
 }

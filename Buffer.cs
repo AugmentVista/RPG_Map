@@ -105,11 +105,13 @@ namespace RPG_Map
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine("           ████████     Map legend:     ████████ ");
-            Console.WriteLine("           ████████   ☙ = Health Fruit  ████████      ");
-            Console.WriteLine("           ████████   ♣ = Very Bad Guy  ████████");
-            Console.WriteLine("           ████████       Health: " + Player.health + "     ████████");
-
+            Console.WriteLine("           ███████████████████████████████████████");
+            Console.WriteLine("           ████████        Map legend:    ████████ ");
+            Console.WriteLine("           ████████    ☙ = Health Fruit   ████████      ");
+            Console.WriteLine("           ████████    ♣ = Very Bad Guy   ████████");
+            Console.WriteLine("           ████████        Health: " + Player.health + "      ████████");
+            Console.WriteLine("           ████████ Remaining Enemies: " + EnemyManager.GetRemainingEnemies() + " ████████");
+            Console.WriteLine("           ████████         Score " + Player.Score + "       ████████");
             Array.Copy(firstBuffer, secondBuffer, MapData.map.Length);
         }
     }
