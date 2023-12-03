@@ -8,6 +8,8 @@ namespace RPG_Map
 {
     public class MapData
     {
+
+        public static int NumFruit = 40;
         public static int scale;
         public static char[,] map;
         public static int score;
@@ -167,9 +169,7 @@ namespace RPG_Map
 
         }
 
-
-
-        public static int GetTotalFruit()
+        public static int GetCurrentFruit()
         {
             int totalFruit = 0;
             int MapWidth = map.GetLength(1);
@@ -187,10 +187,10 @@ namespace RPG_Map
             }
             return totalFruit;
         }
-
+        
         public static int UpdateScore()
         {
-            int score = EnemyManager.numberOfEnemies - EnemyManager.GetRemainingEnemies() + GetTotalFruit();
+            int score = EnemyManager.numberOfEnemies - EnemyManager.GetRemainingEnemies() + NumFruit - GetCurrentFruit();
             Player.Score = score;
             return score;
         }
