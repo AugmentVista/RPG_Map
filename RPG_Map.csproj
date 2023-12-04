@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="Map.txt">
+    <None Remove="Map.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Map.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
 
 </Project>
