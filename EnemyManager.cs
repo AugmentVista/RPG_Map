@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,19 +23,19 @@ namespace RPG_Map
             {
                 int randomX, randomY;
 
-                dos
+                do
                 {
-                    randomX = random.Next(MapWidth);
-                    randomY = random.Next(MapHeight);
-                } while (map[randomY, randomX] != ' ' || map[randomY, randomX] == '☻' || (randomX < 8 && randomY < 8));
+                    randomX = random.Next(MapWidth - 1);
+                    randomY = random.Next(MapHeight - 1);
+                }while (map[randomY, randomX] != ' ' || map[randomY, randomX] == '☻' || (randomX < 8 && randomY < 8));
                 map[randomY, randomX] = enemyCharacter;
             }
         }
         static public void MoveEnemies()
         {
-            for (int x = 0; x < MapWidth; x++)
+            for (int x = 0; x < 76; x++)
             {
-                for (int y = 0; y < MapHeight; y++)
+                for (int y = 0; y < 27; y++)
                 {
                     if (map[y, x] == enemyCharacter) 
                     {
@@ -76,9 +77,9 @@ namespace RPG_Map
         {
             int count = 0;
 
-            for (int y = 0; y < MapHeight; y++)
+            for (int y = 0; y < MapHeight - 1; y++)
             {
-                for (int x = 0; x < MapWidth; x++)
+                for (int x = 0; x < MapWidth - 1; x++)
                 {
                     if (map[y, x] == enemyCharacter)
                     {

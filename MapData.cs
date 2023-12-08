@@ -9,7 +9,6 @@ namespace RPG_Map
     public class MapData
     {
 
-        public static int NumFruit = 12; // needs to dynamically return the number of fruit on the map during DrawMap 
         public static int scale;
         public static char[,] map;
         public static int score;
@@ -33,7 +32,7 @@ namespace RPG_Map
             {
                 keyInfo = Console.ReadKey(true);
                 Console.SetCursorPosition(0, 0);
-                if (keyInfo.Key == ConsoleKey.Enter) //|| GetCurrentFruit() <= 10)
+                if (keyInfo.Key == ConsoleKey.Enter || GetCurrentFruit() <= 0)
                 {
                     Console.Clear();
                     LoadMap2();
@@ -212,7 +211,7 @@ namespace RPG_Map
         
         public static int UpdateScore()
         {
-            int score = EnemyManager.numberOfEnemies - EnemyManager.GetRemainingEnemies() + NumFruit - GetCurrentFruit();
+            int score = EnemyManager.numberOfEnemies - EnemyManager.GetRemainingEnemies();
             Player.Score = score;
             return score;
         }

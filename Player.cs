@@ -19,6 +19,8 @@ namespace RPG_Map
 
         public static void Initialize()
         {
+            playerRow = 4;
+            playerCol = 4;
             health = maxHealth;
             dead = false;
             Score = 0;
