@@ -61,7 +61,40 @@ namespace RPG_Map
                         {
                             Player.TakeDamage();
                         }
-                        else if (map[newY, newX] == ' ')
+                        else if  (EnvriomentHazard.Contains(map[MapData.newCol, newRow].ToString()))
+                            {
+                                Random random = new Random();
+                                int damageChance = random.Next(8);
+
+                                switch (map[newCol, newRow].ToString())
+                                {
+                                    case "⅛":
+                                        if (damageChance == 0) // 1/8 probability
+                                        {
+                                            Player.TakeDamage();
+                                        }
+                                        break;
+                                    case "⅜":
+                                        if (damageChance < 3) // 3/8 probability
+                                        {
+                                            Player.TakeDamage();
+                                        }
+                                        break;
+                                    case "⅝":
+                                        if (damageChance < 5) // 5/8 probability
+                                        {
+                                            Player.TakeDamage();
+                                        }
+                                        break;
+                                    case "⅞":
+                                        if (damageChance < 7) // 7/8 probability
+                                        {
+                                            Player.TakeDamage();
+                                        }
+                                        break;
+                                }
+                            }
+                            else if (map[newY, newX] == ' ')
                         {
                             map[y, x] = ' '; 
                             map[newY, newX] = enemyCharacter; 

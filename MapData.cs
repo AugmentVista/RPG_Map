@@ -13,9 +13,16 @@ namespace RPG_Map
         public static char[,] map;
         public static int score;
 
+
         static string[] border = new string[]
-        {
+       {
           "╔","╗","╝","╚", "║","═"
+       }; 
+        
+        
+        public static string[] EnvriomentHazard = new string[]
+        {
+          "⅛","⅜","⅝","⅞"
         };
 
         static void Main(string[] args)
@@ -32,7 +39,7 @@ namespace RPG_Map
             {
                 keyInfo = Console.ReadKey(true);
                 Console.SetCursorPosition(0, 0);
-                if (keyInfo.Key == ConsoleKey.Enter || GetCurrentFruit() <= 0)
+                if (keyInfo.Key == ConsoleKey.Enter || Player.Score >= 10)
                 {
                     Console.Clear();
                     LoadMap2();
@@ -89,6 +96,10 @@ namespace RPG_Map
                 switch (map[newCol, newRow])
                 {
                     case ' ':
+                    case '⅛':
+                    case '⅜':
+                    case '⅝':
+                    case '⅞':
                         return true;
                     case '╭':
                     case '─':
