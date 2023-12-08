@@ -16,6 +16,10 @@ namespace RPG_Map
         public static bool dead;
         public const int maxHealth = 5;
         public static int Score;
+        public static string[] EnvriomentHazard = new string[]
+       {
+          "⅛","⅜","⅝","⅞"
+       };
 
         public static void Initialize()
         {
@@ -80,6 +84,40 @@ namespace RPG_Map
             {
                 playerRow = newRow;
                 playerCol = newCol;
+
+                if (EnvriomentHazard.Contains(MapData.map[playerCol, playerRow].ToString()))
+                {
+                    Random random = new Random();
+                    int damageChance = random.Next(8);
+
+                    switch (MapData.map[playerCol, playerRow].ToString())
+                    {
+                        case "⅛":
+                            if (damageChance == 0) // 1/8 probability
+                            {
+                                TakeDamage();
+                            }
+                            break;
+                        case "⅜":
+                            if (damageChance < 3) // 3/8 probability
+                            {
+                                TakeDamage();
+                            }
+                            break;
+                        case "⅝":
+                            if (damageChance < 5) // 5/8 probability
+                            {
+                                TakeDamage();
+                            }
+                            break;
+                        case "⅞":
+                            if (damageChance < 7) // 7/8 probability
+                            {
+                                TakeDamage();
+                            }
+                            break;
+                    }
+                }
             }
         }
 
@@ -92,8 +130,6 @@ namespace RPG_Map
                 health = maxHealth;
             }
         }
-
-
         public static void TakeDamage()
         {
             health--;
@@ -102,8 +138,14 @@ namespace RPG_Map
                 Die();
             }
         }
-        static void Die()
+        public static void Die()
         {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(" ███████████████████████████████████████   YOU DIED    ███████████████████████████████████████");
+            Console.ReadKey(true);
             dead = true;
         }
     }

@@ -113,22 +113,23 @@ namespace RPG_Map
                     }
                 }
             }
-            Console.ResetColor();
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine("           ███████████████████████████████████████");
-            Console.WriteLine("           ████████        Map legend:    ████████");
-            Console.WriteLine("           ████████    ☙ = Health Fruit   ████████");
-            Console.WriteLine("           ████████    ♣ = Very Bad Guy   ████████");
-            Console.WriteLine("           ████████        Health: " + Player.health + "      ████████");
-            Console.WriteLine("           ████████ Remaining Enemies: " + EnemyManager.GetRemainingEnemies() + " ████████");
-            Console.WriteLine("           ████████         Score " + Player.Score + "       ████████");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("           ███████████████████████████████████████████████████");
+            Console.WriteLine("           ████████        Map legend:                ████████");
+            Console.WriteLine("           ████████    ☙ = Health Fruit               ████████");
+            Console.WriteLine("           ████████    ♣ = Very Bad Guy               ████████");
+            Console.WriteLine("           ████████        Health:" + Player.health + "                   ████████");
+            Console.WriteLine("           ████████    Remaining Enemies: " + EnemyManager.GetRemainingEnemies() + "          ████████");
+            Console.WriteLine("           ████████         Score " + Player.Score + "                   ████████");
             Console.WriteLine("           ████████ ⅛ = 1/8th chance to take damage   ████████");
             Console.WriteLine("           ████████ ⅜ = 3/8th chance to take damage   ████████");
             Console.WriteLine("           ████████ ⅝ = 5/8th chance to take damage   ████████");
             Console.WriteLine("           ████████ ⅞ = 7/8th chance to take damage   ████████");
+            Console.WriteLine("           ███████████████████████████████████████████████████");
             Array.Copy(firstBuffer, secondBuffer, MapData.map.Length);
+           }
         }
     }
-}

@@ -18,23 +18,27 @@ namespace RPG_Map
        {
           "╔","╗","╝","╚", "║","═"
        }; 
-        
-        
-        public static string[] EnvriomentHazard = new string[]
-        {
-          "⅛","⅜","⅝","⅞"
-        };
-
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             score = 0;
 
-            TxtFileToMapArray();
-            //LoadMap2();
-            EnemyManager.EnemyPopulate();
             Player.Initialize();
+            TxtFileToMapArray();
+            EnemyManager.EnemyPopulate();
             ConsoleKeyInfo keyInfo;
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("             Press any Key to Begin");
+            Console.WriteLine();
+            Console.WriteLine("             Defeat 10 enemies to advance to the next stage");
+            Console.WriteLine();
+            Console.WriteLine("             Collect Fruit to recover your health");
+            Console.WriteLine();
+            Console.WriteLine("             Press Enter to skip to the second stage");
+
             do
             {
                 keyInfo = Console.ReadKey(true);
@@ -42,16 +46,17 @@ namespace RPG_Map
                 if (keyInfo.Key == ConsoleKey.Enter || Player.Score >= 10)
                 {
                     Console.Clear();
+                    Player.Initialize();
                     LoadMap2();
                     EnemyManager.EnemyPopulate();
-                    Player.Initialize();
+                    keyInfo = Console.ReadKey(true);
                 }
                 Player.HandleKeyPress(keyInfo.Key);
                 DrawMap();
                 Player.DrawPlayer();
                 Buffer.DisplayBuffer(1);
                 DrawBorder(1);
-            } while (keyInfo.Key != ConsoleKey.Escape && !Player.dead);
+            } while (Player.dead == false);
         }
         public static void TxtFileToMapArray()
         {
@@ -66,6 +71,15 @@ namespace RPG_Map
                 {
                     map[i, j] = lines[i][j];
                 }
+            }
+        }
+        public static void DeathCheck()
+        {
+            ConsoleKeyInfo keyInfo;
+            keyInfo = Console.ReadKey(true);
+            if (keyInfo.Key == ConsoleKey.Escape)
+            {
+                Player.Die();
             }
         }
         public static void LoadMap2()
