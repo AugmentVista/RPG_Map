@@ -9,10 +9,14 @@
 
   <ItemGroup>
     <None Remove="Map.txt" />
+    <None Remove="Map2.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Map.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Map2.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

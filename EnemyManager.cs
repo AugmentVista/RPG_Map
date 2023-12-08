@@ -22,11 +22,11 @@ namespace RPG_Map
             {
                 int randomX, randomY;
 
-                do
+                dos
                 {
                     randomX = random.Next(MapWidth);
                     randomY = random.Next(MapHeight);
-                } while (map[randomY, randomX] != ' ' || map[randomY, randomX] == '☻' || (randomX < 10 && randomY < 10));
+                } while (map[randomY, randomX] != ' ' || map[randomY, randomX] == '☻' || (randomX < 8 && randomY < 8));
                 map[randomY, randomX] = enemyCharacter;
             }
         }

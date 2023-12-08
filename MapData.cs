@@ -9,7 +9,7 @@ namespace RPG_Map
     public class MapData
     {
 
-        public static int NumFruit = 40;
+        public static int NumFruit = 12; // needs to dynamically return the number of fruit on the map during DrawMap 
         public static int scale;
         public static char[,] map;
         public static int score;
@@ -25,6 +25,7 @@ namespace RPG_Map
             score = 0;
 
             TxtFileToMapArray();
+            //LoadMap2();
             EnemyManager.EnemyPopulate();
             Player.Initialize();
             ConsoleKeyInfo keyInfo;
@@ -32,17 +33,38 @@ namespace RPG_Map
             {
                 keyInfo = Console.ReadKey(true);
                 Console.SetCursorPosition(0, 0);
+                if (keyInfo.Key == ConsoleKey.Enter) //|| GetCurrentFruit() <= 10)
+                {
+                    Console.Clear();
+                    LoadMap2();
+                    EnemyManager.EnemyPopulate();
+                    Player.Initialize();
+                }
                 Player.HandleKeyPress(keyInfo.Key);
                 DrawMap();
                 Player.DrawPlayer();
                 Buffer.DisplayBuffer(1);
                 DrawBorder(1);
-            } while (keyInfo.Key != ConsoleKey.Escape && !Player.dead); // end game when all enemies are ded'd 
+            } while (keyInfo.Key != ConsoleKey.Escape && !Player.dead);
         }
-
         public static void TxtFileToMapArray()
         {
             string[] lines = File.ReadAllLines("Map.txt");
+
+            map = new char[lines.GetLength(0), lines[0].Length];
+            Buffer.firstBuffer = new char[lines.GetLength(0), lines[0].Length];
+            Buffer.secondBuffer = new char[lines.GetLength(0), lines[0].Length];
+            for (int i = 0; i < lines.GetLength(0); i++)
+            {
+                for (int j = 0; j < lines[i].Length; j++)
+                {
+                    map[i, j] = lines[i][j];
+                }
+            }
+        }
+        public static void LoadMap2()
+        {
+            string[] lines = File.ReadAllLines("Map2.txt");
 
             map = new char[lines.GetLength(0), lines[0].Length];
             Buffer.firstBuffer = new char[lines.GetLength(0), lines[0].Length];
