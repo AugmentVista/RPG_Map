@@ -120,7 +120,6 @@ namespace RPG_Map
                 }
             }
         }
-
         public static void GainHealth()
         {
             health++;

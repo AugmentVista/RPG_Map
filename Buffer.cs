@@ -23,107 +23,102 @@ namespace RPG_Map
         public static char[,] firstBuffer;
         public static char[,] secondBuffer;
 
-        public static void DisplayBuffer(int scale)
+        public static void DisplayBuffer()
         {
             for (int Y = 0; Y < firstBuffer.GetLength(0); Y++)
             {
-                for (int columnScale = 0; columnScale < scale; columnScale++)
+
+                for (int X = 0; X < firstBuffer.GetLength(1); X++)
                 {
-                    for (int X = 0; X < firstBuffer.GetLength(1); X++)
-                    {
-                        char MapElements = secondBuffer[Y, X];
+                    char MapElements = secondBuffer[Y, X];
                         
-                        if (MapElements == firstBuffer[Y, X])
-                        {
-                            continue;
-                        }
-                        for (int rowScale = 0; rowScale < scale; rowScale++)
-                        {
-                            switch (MapElements)
-                            {
-
-                                case '╭':
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                    break;
-                                case '─':
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                    break;
-                                case '╮':
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                    break;
-                                case '╯':
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                    break;
-                                case '╰':
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                    break;
-                                case '│':
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                    break;
-                                case '┘':
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                    break;
-                                case '┌':
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                    break;
-                                case '┐':
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                    break;
-                                case '└':
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                    break;
-                                case '├':
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                    break;
-                                case '┤':
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                    break;
-                                case '┬':
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                    break;
-                                case '┴':
-                                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                    break;
-                                case '☻':
-                                    Console.ForegroundColor = ConsoleColor.Yellow;
-                                    break;
-                                case '☙':
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    break;
-                                case '♣':
-                                    Console.ForegroundColor = ConsoleColor.Green;
-                                    break;
-                                case '⅛':
-                                    Console.ForegroundColor = ConsoleColor.White;
-                                    break;
-                                case '⅜':
-                                    Console.ForegroundColor = ConsoleColor.White;
-                                    break;
-                                case '⅝':
-                                    Console.ForegroundColor = ConsoleColor.White;
-                                    break;
-                                case '⅞':
-                                    Console.ForegroundColor = ConsoleColor.White;
-                                    break;
-
-                            }
-                            Console.SetCursorPosition((X + 1) * scale + columnScale, (Y + 1) * scale + rowScale);
-                            Console.Write(MapElements);
-                        }
+                    if (MapElements == firstBuffer[Y, X])
+                    {
+                        continue;
                     }
+                    int Top = Y + 1;
+                    int Left = X + 1;
+                    switch (MapElements)
+                    {
+                        case '╭':
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            break;
+                        case '─':
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            break;
+                        case '╮':
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            break;
+                        case '╯':
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            break;
+                        case '╰':
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            break;
+                        case '│':
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            break;
+                        case '┘':
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            break;
+                        case '┌':
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            break;
+                        case '┐':
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            break;
+                        case '└':
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            break;
+                        case '├':
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            break;
+                        case '┤':
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            break;
+                        case '┬':
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            break;
+                        case '┴':
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            break;
+                        case '☻':
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            break;
+                        case '☙':
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            break;
+                        case '♣':
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            break;
+                        case '⅛':
+                            Console.ForegroundColor = ConsoleColor.White;
+                            break;
+                        case '⅜':
+                            Console.ForegroundColor = ConsoleColor.White;
+                            break;
+                        case '⅝':
+                            Console.ForegroundColor = ConsoleColor.White;
+                            break;
+                        case '⅞':
+                            Console.ForegroundColor = ConsoleColor.White;
+                            break;
+
+                    }
+                    Console.SetCursorPosition(Left, Top);
+                    Console.Write(MapElements); 
                 }
             }
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("           ███████████████████████████████████████████████████");
-            Console.WriteLine("           ████████        Map legend:                ████████");
-            Console.WriteLine("           ████████    ☙ = Health Fruit               ████████");
-            Console.WriteLine("           ████████    ♣ = Very Bad Guy               ████████");
-            Console.WriteLine("           ████████        Health:" + Player.health + "                   ████████");
-            Console.WriteLine("           ████████    Remaining Enemies: " + EnemyManager.GetRemainingEnemies() + "          ████████");
-            Console.WriteLine("           ████████         Score " + Player.Score + "                   ████████");
+            Console.WriteLine("           ████████           Map legend:             ████████");
+            Console.WriteLine("           ████████       ☙ = Health Fruit            ████████");
+            Console.WriteLine("           ████████       ♣ = Very Bad Guy            ████████");
+            Console.WriteLine("           ████████           Health:" + Player.health + "                ████████");
+            Console.WriteLine("           ████████       Remaining Enemies: " + EnemyManager.GetRemainingEnemies() + "       ████████");
+            Console.WriteLine("           ████████            Score " + Player.Score + "                ████████");
             Console.WriteLine("           ████████ ⅛ = 1/8th chance to take damage   ████████");
             Console.WriteLine("           ████████ ⅜ = 3/8th chance to take damage   ████████");
             Console.WriteLine("           ████████ ⅝ = 5/8th chance to take damage   ████████");

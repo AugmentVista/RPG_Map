@@ -54,8 +54,8 @@ namespace RPG_Map
                 Player.HandleKeyPress(keyInfo.Key);
                 DrawMap();
                 Player.DrawPlayer();
-                Buffer.DisplayBuffer(1);
-                DrawBorder(1);
+                Buffer.DisplayBuffer();
+                DrawBorder();
             } while (Player.dead == false);
         }
         public static void TxtFileToMapArray()
@@ -144,14 +144,14 @@ namespace RPG_Map
             return false;
         }
 
-        static void DrawBorder(int scale)
+        static void DrawBorder()
         {
             int mapWidth = map.GetLength(1);
             int mapHeight = map.GetLength(0);
             int HorizontalWall = 1;
             int VerticalWall = 1;
-            int totalWidth = (mapWidth + 1 )* scale;
-            int totalHeight = (mapHeight + 1) * scale;
+            int totalWidth = (mapWidth + 1);
+            int totalHeight = (mapHeight + 1);
 
             foreach (string ASCll in border)
             {
@@ -177,7 +177,6 @@ namespace RPG_Map
                         break;
                 }
             }
-
             Console.SetCursorPosition(0, 0);
             Console.Write(border[0]);
             Console.SetCursorPosition(totalWidth, 0);
@@ -212,7 +211,6 @@ namespace RPG_Map
             Console.Write(border[3]);
             Console.SetCursorPosition(totalWidth, totalHeight);
             Console.Write(border[2]);
-
         }
 
         public static int GetCurrentFruit()
